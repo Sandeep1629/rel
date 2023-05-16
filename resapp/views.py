@@ -46,7 +46,7 @@ def home(request):
 #@app.route('/prop')
 def index(request):
     client = pymongo.MongoClient(
-        'mongodb+srv://2100032245:2100032245@cluster0.iejagan.mongodb.net/?retryWrites=true&w=majority')
+        'mongodb://localhost:27017')
     db = client['properties_db']
     collection = db['properties']
     properties = collection.find()
@@ -56,7 +56,7 @@ def index(request):
 #@app.route('/buy')
 def buy(request):
     client = pymongo.MongoClient(
-        'mongodb+srv://2100032245:2100032245@cluster0.iejagan.mongodb.net/?retryWrites=true&w=majority')
+        'mongodb://localhost:27017')
     db = client['properties_db']
     collection = db['properties']
     properties = collection.find()
@@ -69,7 +69,7 @@ def bookings(request):
         id = request.POST.get("id")
 
         client = pymongo.MongoClient(
-            'mongodb+srv://2100032245:2100032245@cluster0.iejagan.mongodb.net/?retryWrites=true&w=majority')
+            'mongodb://localhost:27017')
 
         db = client['properties_db']
         properties_collection = db['properties']
@@ -91,7 +91,7 @@ def bookings(request):
 #@app.route('/dashboard2')
 def dashboard2(request):
     client = pymongo.MongoClient(
-        'mongodb+srv://2100032245:2100032245@cluster0.iejagan.mongodb.net/?retryWrites=true&w=majority')
+        'mongodb://localhost:27017')
     db = client['properties_db']
     collection = db['dash']
     # Get all the bookings from MongoDB and display them in the dashboard
@@ -110,7 +110,7 @@ from django.shortcuts import redirect
 
 def dashboard(request):
     client = pymongo.MongoClient(
-        'mongodb+srv://2100032245:2100032245@cluster0.iejagan.mongodb.net/?retryWrites=true&w=majority')
+        'mongodb://localhost:27017')
     db = client['properties_db']
     collection = db['properties']
     # Get all the bookings from MongoDB and display them in the dashboard
@@ -137,7 +137,7 @@ def login(request):
         ename = request.POST.get("username")
         epass = request.POST.get("password")
         client = pymongo.MongoClient(
-            'mongodb+srv://2100032245:2100032245@cluster0.iejagan.mongodb.net/?retryWrites=true&w=majority')
+            'mongodb://localhost:27017')
         if ename == "admin" and epass == "123":
             return redirect('review')
         else:
@@ -183,7 +183,7 @@ def hlr(request):
         epass = request.POST.get("password")
 
         client = pymongo.MongoClient(
-            'mongodb+srv://2100032245:2100032245@cluster0.iejagan.mongodb.net/?retryWrites=true&w=majority')
+            'mongodb://localhost:27017')
 
         db = client["Pfsd"]
         collection = db["sdp4"]
@@ -226,7 +226,7 @@ from django.core.mail import send_mail
 def sell(request):
     if request.method == "POST":
         client = pymongo.MongoClient(
-            'mongodb+srv://2100032245:2100032245@cluster0.iejagan.mongodb.net/?retryWrites=true&w=majority')
+            'mongodb://localhost:27017')
         db = client['properties_db']
         collection = db['properties_tm']
         ename = request.session['username']
@@ -281,7 +281,7 @@ def review_properties(request):
     if request.method == "GET":
 
         client = pymongo.MongoClient(
-            'mongodb+srv://2100032245:2100032245@cluster0.iejagan.mongodb.net/?retryWrites=true&w=majority')
+            'mongodb://localhost:27017')
         db = client['properties_db']
         temp_collection = db['properties_tm']
 
@@ -292,7 +292,7 @@ def review_properties(request):
     elif request.method == "POST":
 
         client = pymongo.MongoClient(
-            'mongodb+srv://2100032245:2100032245@cluster0.iejagan.mongodb.net/?retryWrites=true&w=majority')
+            'mongodb://localhost:27017')
         db = client['properties_db']
         temp_collection = db['properties_tm']
         perm_collection = db['properties']
@@ -373,7 +373,7 @@ from bson.objectid import ObjectId
 
 def delete_booking(request):
     if request.method == 'POST':
-        client = pymongo.MongoClient('mongodb+srv://2100032245:2100032245@cluster0.iejagan.mongodb.net/?retryWrites=true&w=majority')
+        client = pymongo.MongoClient('mongodb://localhost:27017')
         db = client['properties_db']
         collection = db['properties']
 
