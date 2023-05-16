@@ -1,0 +1,56 @@
+{% block content %}
+    <h1>Review Properties</h1>
+    <form method="POST" action="{% url 'review' %}" class="property-form">
+        {% csrf_token %}
+        <table>
+            <tr>
+
+                 <th>Property Name</th>
+                 <th>Property Image</th>
+                <th>Location</th>
+                <th>Price</th>
+                <th>Size</th>
+                <th>Approve</th>
+                <th>Reject</th>
+            </tr>
+            {% for property in properties %}
+                <tr>
+                    <td>{{ property.name }}</td>
+                     <td><img src="{{ property.image }}" width="100"></td>
+                    <td>{{ property.Location }}</td>
+                    <td>{{ property.price }}</td>
+                    <td>{{ property.size }}</td>
+                    <td><input type="checkbox" name="approved" value="{{ property.prop_id }}"></td>
+                    <td><input type="checkbox" name="rejected" value="{{ property.prop_id }}"></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}
+
+<style>
+.property-form {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+</style>

@@ -1,0 +1,13 @@
+<body>
+<div class="container home_msg">
+  {%if user.is_authenticated %}
+  <form enctype="multipart/form-data" method="post" role="product_page">
+    {% crsf_token %}
+    <h2>hi{{user}} to pay click on this button <button type="submit"
+    class="btn btn-sucess" href="{% url 'product_page' %}"
+    data-bind-href="pricing">Payment</button></h2>
+  </form>
+  {% else %}
+
+</div>
+</body>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Listings</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<style>
+ body {
+  padding: 20px;
+  background-color: hsl(218, 41%, 15%);
+}
+h1{
+color:white;
+}
+table {
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: #fff;
+  border-collapse: collapse;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+th, td {
+  padding: 12px 15px;
+  padding:80px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+th {
+  background-color: #f8f8f8;
+  font-weight: bold;
+}
+</style>
+<body>
+    <div class="container">
+        <h1 class="mt-4 mb-4">Listings</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Price</th>
+                    <th>Type</th>
+                    <th>ID</th>
+                    <th>Location</th>
+                    <th>Contact</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking.name }}</td>
+                    <td><img src="{{ booking.image }}" alt="{{ booking.name }}" height="100"></td>
+                    <td>{{ booking.price }}</td>
+                    <td>{{ booking.type }}</td>
+                    <td>{{ booking.prop_id }}</td>
+                    <td>{{ booking.Location }}</td>
+                    <td>{{ booking.contact }}</td>
+                    <td>
+                        <form method="post" action="{% url 'delete_booking' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="prop_id" value="{{ booking.prop_id }}">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

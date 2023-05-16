@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Booked Properties</title>
+   <link href="static/ty.png" rel="icon">
+  <link href="static/ty.png" rel="apple-touch-icon">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+body {
+  padding: 20px;
+  background-color: hsl(218, 41%, 15%);
+}
+h1{
+color:white;
+}
+table {
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: #fff;
+  border-collapse: collapse;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+th, td {
+  padding: 12px 15px;
+  padding:80px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+th {
+  background-color: #f8f8f8;
+  font-weight: bold;
+}
+</style>
+</head>
+<body>
+
+<table class="table">
+  <h1>Your Booked Properties</h1>
+<br>
+<thead>
+<tr>
+  <th>Booking ID</th>
+  <th>Booking Date</th>
+  <th>Action</th>
+</tr>
+</thead>
+<tbody>
+{% for intr in intr %}
+<tr>
+  <td>{{ intr.prop_id }}</td>
+  <td>{{ intr.created_date }}</td>
+  <td><a href="payment.html?id={{ intr.prop_id }}" class="btn btn-primary">Buy</a></td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

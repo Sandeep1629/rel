@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+
+      <!-- Google Fonts -->
+
+ <title>Properties</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700" rel="stylesheet">
+ <link href="static/ty.png" rel="icon">
+  <link href="static/ty.png" rel="apple-touch-icon">
+  <!-- Vendor CSS Files -->
+  <link href="static/vendor/aos/aos.css" rel="stylesheet">
+  <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="static/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="static/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+     <style>
+    body {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+
+
+  <!-- Template Main CSS File -->
+  <link href="static/css/style.css" rel="stylesheet">
+  <div  class="portfolio" id="portfolio">
+
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h3 class="section-title">Properties</h3>
+          <p class="section-description">explore a wide range of properties that are currently available for sale or rent.</p>
+        </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-Rent">Rent</li>
+              <li data-filter=".filter-Sale">Sale</li>
+              <li data-filter=".filter-Site">Site</li>
+              <li data-filter=".filter-Vijayawada">Vijayawada</li>
+              <li data-filter=".filter-Guntur">Guntur</li>
+              <li data-filter=".filter-Amaravathi">Amaravathi</li>
+            </ul>
+          </div>
+        </div>
+
+
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+
+{% for property in properties %}
+
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-{{property.Location}} filter-{{property.type}}">
+<!--   <div class="col-lg-4 col-md-6 portfolio-item filter-{{property.Location}}">-->
+            <img src="{{property.image}}" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>{{property.name}}                 |                    {{property.prop_id}}</h4>
+              <p>RS-{{property.price}}    |   {{property.Location}}   |   {{property.contact}} </p>
+
+              <a href="{{property.image}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="{{property.type}}"></a>
+
+
+            </div>
+              <div class="star-rating">
+        <span class="fa fa-star-o" data-rating="1"></span>
+        <span class="fa fa-star-o" data-rating="2"></span>
+        <span class="fa fa-star-o" data-rating="3"></span>
+        <span class="fa fa-star-o" data-rating="4"></span>
+        <span class="fa fa-star-o" data-rating="5"></span>
+      </div>
+
+          </div>
+
+{% endfor %}
+
+          <script src="static/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="static/vendor/aos/aos.js"></script>
+  <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="static/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="static/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="static/vendor/swiper/swiper-bundle.min.js"></script>
+  <!-- Template Main JS File -->
+  <script src="static/main.js"> </script>
+            <script>
+  // Get all star rating containers
+  const ratingContainers = document.querySelectorAll('.star-rating');
+
+  // Loop through each container and add click event listener to stars
+  ratingContainers.forEach((container) => {
+    const stars = container.querySelectorAll('.fa-star-o');
+
+    stars.forEach((star) => {
+      star.addEventListener('click', () => {
+        // Get selected star rating value
+        const rating = star.getAttribute('data-rating');
+
+        // Set all stars up to the selected star to be filled in
+        stars.forEach((s) => {
+          if (s.getAttribute('data-rating') <= rating) {
+            s.classList.remove('fa-star-o');
+            s.classList.add('fa-star');
+          } else {
+            s.classList.remove('fa-star');
+            s.classList.add('fa-star-o');
+          }
+        });
+      });
+    });
+  });
+</script>
+        </div>
+
+      </div>
+
+
+
+  </div>
+
+</body>
+</html>
